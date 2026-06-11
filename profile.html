@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<title>Credit Portal</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:260px;
+height:100vh;
+background:linear-gradient(180deg,#2563eb,#1d4ed8);
+padding:30px;
+color:white;
+}
+
+.sidebar h2{
+font-size:34px;
+margin-bottom:40px;
+}
+
+.sidebar a{
+display:block;
+padding:14px;
+margin-top:10px;
+color:white;
+text-decoration:none;
+border-radius:12px;
+}
+
+.sidebar a:hover{
+background:rgba(255,255,255,.15);
+}
+
+.content{
+margin-left:260px;
+padding:40px;
+}
+
+.header{
+background:white;
+padding:30px;
+border-radius:22px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+margin-bottom:25px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:22px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.score-card{
+grid-column:span 2;
+cursor:pointer;
+transition:.3s;
+}
+
+.score-card:hover{
+transform:translateY(-4px);
+}
+
+.card h3{
+color:#2563eb;
+margin-bottom:15px;
+}
+
+.score{
+font-size:80px;
+font-weight:800;
+letter-spacing:-2px;
+color:#22c55e;
+}
+
+.status{
+color:#22c55e;
+font-weight:700;
+}
+
+.info{
+font-size:17px;
+margin-top:10px;
+}
+
+#gaugeWrap{
+display:none;
+margin-top:25px;
+text-align:center;
+}
+
+.gauge{
+width:420px;
+height:220px;
+position:relative;
+margin:auto;
+overflow:hidden;
+}
+
+.arc{
+width:420px;
+height:420px;
+border-radius:50%;
+background:conic-gradient(
+from 180deg,
+#ef4444 0deg,
+#f97316 55deg,
+#facc15 110deg,
+#84cc16 170deg,
+#22c55e 270deg,
+#22c55e 292deg,
+#e5e7eb 292deg,
+#e5e7eb 360deg
+);
+}
+
+.arc-inner{
+position:absolute;
+top:55px;
+left:55px;
+width:310px;
+height:310px;
+background:white;
+border-radius:50%;
+}
+
+.arrow{
+position:absolute;
+left:50%;
+bottom:18px;
+width:4px;
+height:120px;
+background:#111;
+border-radius:20px;
+transform-origin:bottom center;
+transform:translateX(-50%) rotate(-90deg);
+transition:transform 2s ease;
+z-index:5;
+}
+
+.center-dot{
+position:absolute;
+left:50%;
+bottom:12px;
+transform:translateX(-50%);
+width:18px;
+height:18px;
+background:#111;
+border-radius:50%;
+z-index:6;
+}
+
+.score-big{
+position:absolute;
+left:50%;
+bottom:20px;
+transform:translateX(-50%);
+text-align:center;
+z-index:7;
+}
+
+.score-big div{
+font-size:64px;
+font-weight:800;
+letter-spacing:-2px;
+color:#22c55e;
+}
+
+.scale{
+display:flex;
+justify-content:space-between;
+max-width:420px;
+margin:0 auto;
+color:#666;
+}
+
+.details{
+margin-top:20px;
+line-height:2;
+font-size:18px;
+}
+
+@media(max-width:900px){
+.score-card{grid-column:span 1;}
+.content{margin-left:0;padding:20px;}
+.sidebar{display:none;}
+}
+
+</style>
+</head>
+<body>
+<div class="sidebar">
+<h2>Credit Portal</h2>
+
+<a href="/home.html"> Главная</a>
+<a href="/rating.html"> Кредитный рейтинг</a>
+<a href="/credits.html"> История кредитов</a>
+<a href="/finance.html"> Финансы</a>
+<a href="/settings.html"> Настройки</a>
+<a href="/logout"> Выход</a>
+
+</div>
+
+
+<div class="content">
+
+<div class="header">
+<h1>Добро пожаловать</h1>
+<p>Ваш персональный кабинет кредитной истории</p>
+</div>
+
+<div class="cards">
+
+<div class="card score-card" onclick="toggleGauge()">
+
+<h3>Кредитный рейтинг</h3>
+
+<div class="score">812</div>
+
+<p class="status">Отличная кредитная история</p>
+
+<p style="margin-top:10px;color:#666;">
+Нажмите для подробностей
+</p>
+
+<div id="gaugeWrap">
+
+<div class="gauge">
+
+<div class="arc"></div>
+<div class="arc-inner"></div>
+
+<div id="arrow" class="arrow"></div>
+<div class="center-dot"></div>
+
+<div class="score-big">
+<div id="scoreNumber">812</div>
+<span>Отличная кредитная история</span>
+</div>
+
+</div>
+
+<div class="scale">
+<span>250</span>
+<span>999</span>
+</div>
+
+<div class="details">
+<p>🟢 Финансовая надёжность: Высокая</p>
+<p>📈 Вероятность одобрения заявок: 92%</p>
+<p>🛡️ Просроченная задолженность: Не выявлена</p>
+<p>💳 Активные кредитные продукты: 2</p>
+</div>
+
+</div>
+
+</div>
+<div class="card" onclick="toggleProfile()" style="cursor:pointer;">
+
+<h3>Личная информация</h3>
+
+<div class="info"> ФИО: Иванов Иван Иванович</div>
+<div class="info"> Email: ivanov@example.com</div>
+
+<p style="margin-top:15px;color:#2563eb;">
+Нажмите для просмотра анкеты
+</p>
+
+<div id="profileDetails" style="display:none;margin-top:20px;">
+<div class="info"> Дата рождения: 15.04.1995</div>
+<div class="info"> Телефон: +7 (999) 123-45-67</div>
+<div class="info"> Дата регистрации: 12.03.2026</div>
+<div class="info"> ИДБО: 874563219</div>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<div class="card" onclick="toggleCredits()" style="cursor:pointer;">
+
+<h3>Кредитная история</h3>
+
+<div class="info">Активные кредиты: 2</div>
+<div class="info">Закрытые кредиты: 5</div>
+<div class="info">Просрочки: 0</div>
+
+<p style="margin-top:15px;color:#2563eb;">
+Нажмите для подробностей
+</p>
+
+<div id="creditDetails" style="display:none;margin-top:20px;">
+
+<h4 style="margin-bottom:15px;color:#2563eb;">
+Активные кредиты
+</h4>
+
+<div class="info">
+🏦 Потребительский кредит №458721
+<br>
+Сумма: 450 000 ₽
+<br>
+Остаток: 0 ₽
+<br>
+Статус: Ожидает погашения
+</div>
+
+<div class="info" style="margin-top:15px;">
+🚗 Автокредит №784521
+<br>
+Сумма: 120 000 ₽
+<br>
+Остаток: 0 ₽
+<br>
+Статус: Досрочно погашен
+</div>
+
+<hr style="margin:20px 0;">
+
+<h4 style="margin-bottom:15px;color:#2563eb;">
+Закрытые кредиты
+</h4>
+
+<div class="info">
+✅ Кредитная карта — закрыт 14.03.2024
+</div>
+
+<div class="info">
+✅ Потребительский кредит — закрыт 07.09.2023
+</div>
+
+<div class="info">
+✅ Рассрочка — закрыта 22.01.2023
+</div>
+
+<div class="info">
+✅ Автокредит — закрыт 10.11.2022
+</div>
+
+<div class="info">
+✅ Кредит наличными — закрыт 18.06.2021
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="card" onclick="toggleFinance()" style="cursor:pointer;">
+
+<h3>Финансовый профиль</h3>
+
+<div class="info">💰 Доход: 120 000 ₽</div>
+<div class="info">📊 Кредитная нагрузка: 30%</div>
+<div class="info">💳 Активный лимит: 105 000 ₽</div>
+
+<p style="margin-top:15px;color:#2563eb;">
+Нажмите для анализа нагрузки
+</p>
+
+<div id="financeDetails" style="display:none;margin-top:25px;text-align:center;">
+
+<div style="
+width:260px;
+height:260px;
+margin:auto;
+border-radius:50%;
+background:
+conic-gradient(
+#22c55e 0deg 108deg,
+#e5e7eb 108deg 360deg
+);
+display:flex;
+justify-content:center;
+align-items:center;
+">
+
+<div style="
+width:180px;
+height:180px;
+background:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+">
+
+<div style="
+font-size:48px;
+font-weight:800;
+color:#22c55e;
+">
+30%
+</div>
+
+<div>
+Нагрузка
+</div>
+
+</div>
+
+</div>
+
+<div class="details">
+
+<p>🟢 Уровень риска: Низкий</p>
+<p>📈 Финансовая устойчивость: Высокая</p>
+<p>💰 Свободный лимит: 105 000 ₽</p>
+<p>🏦 Рекомендуемый лимит: 250 000 ₽</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card" onclick="toggleSecurity()" style="cursor:pointer;">
+
+<h3>🛡️ Мониторинг аккаунта</h3>
+
+<div class="info">
+Статус: Активен
+</div>
+
+<p style="margin-top:15px;color:#2563eb;">
+Нажмите для подробностей
+</p>
+
+<div id="securityDetails" style="display:none;margin-top:20px;">
+
+<div class="info">
+✔ Подозрительной активности не найдено
+</div>
+
+<div class="info">
+✔ Утечек персональных данных не обнаружено
+</div>
+
+<div class="info">
+✔ Несанкционированных входов не выявлено
+</div>
+
+<div class="info">
+✔ Кредитная история без изменений
+</div>
+
+<div class="info">
+✔ Проверка системы завершена успешно
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3> Центр активности</h3>
+
+<div class="info">
+ Последний вход: Сегодня в 09:42
+</div>
+
+<div class="info">
+ Проверка рейтинга: Выполнена
+</div>
+
+<div class="info">
+ Мониторинг безопасности: Активен
+</div>
+
+<div class="info">
+ Обновление кредитных данных: Успешно
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<script>
+
+let opened = false;
+
+function animateScore(){
+
+const el =
+document.getElementById("scoreNumber");
+
+let value = 0;
+
+const timer = setInterval(() => {
+
+value += 8;
+
+if(value >= 812){
+value = 812;
+clearInterval(timer);
+}
+
+el.innerText = value;
+
+},10);
+
+}
+
+function toggleGauge(){
+
+const gauge =
+document.getElementById("gaugeWrap");
+
+const arrow =
+document.getElementById("arrow");
+
+const score =
+document.getElementById("scoreNumber");
+
+if(opened){
+
+gauge.style.display = "none";
+
+arrow.style.transform =
+"translateX(-50%) rotate(-90deg)";
+
+score.innerText = "812";
+
+opened = false;
+
+}else{
+
+gauge.style.display = "block";
+
+score.innerText = "0";
+
+setTimeout(() => {
+
+arrow.style.transform =
+"translateX(-50%) rotate(56deg)";
+
+animateScore();
+
+},100);
+
+opened = true;
+
+}
+
+}
+function toggleProfile(){
+
+const profile =
+document.getElementById("profileDetails");
+
+if(profile.style.display === "block"){
+profile.style.display = "none";
+}else{
+profile.style.display = "block";
+}
+
+}
+function toggleCredits(){
+
+const credits =
+document.getElementById("creditDetails");
+
+if(credits.style.display === "block"){
+credits.style.display = "none";
+}else{
+credits.style.display = "block";
+}
+
+}
+function toggleFinance(){
+
+const finance =
+document.getElementById("financeDetails");
+
+if(finance.style.display === "block"){
+finance.style.display = "none";
+}else{
+finance.style.display = "block";
+}
+
+}
+function toggleSecurity(){
+
+const security =
+document.getElementById("securityDetails");
+
+if(security.style.display === "block"){
+security.style.display = "none";
+}else{
+security.style.display = "block";
+}
+
+}
+function toggleActivity(){
+
+const activity =
+document.getElementById("activityDetails");
+
+if(activity.style.display === "block"){
+activity.style.display = "none";
+}else{
+activity.style.display = "block";
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<title>Кредитный рейтинг</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+body{
+background:
+linear-gradient(
+135deg,
+#1e40af,
+#2563eb,
+#60a5fa
+);
+}
+.card{
+max-width:1000px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+h1{
+color:#2563eb;
+margin-bottom:30px;
+}
+
+.rating{
+font-size:120px;
+font-weight:800;
+color:#22c55e;
+}
+
+.info{
+font-size:22px;
+margin:15px 0;
+}
+
+.back{
+display:inline-block;
+margin-top:30px;
+padding:14px 24px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:12px;
+}
+.container{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+max-width:1400px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.bank-card{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+height:fit-content;
+}
+
+.bank-card h2{
+color:#2563eb;
+margin-bottom:25px;
+}
+
+.bank{
+margin-bottom:25px;
+}
+
+.bank-name{
+font-weight:700;
+font-size:20px;
+margin-bottom:8px;
+}
+
+.limit{
+color:#16a34a;
+font-size:24px;
+font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1> Кредитный портфель</h1>
+
+<div class="info"> Потребительский кредит №458721</div>
+<div class="info"> Статус: Активен</div>
+<div class="info"> Сумма: 45 000 ₽</div>
+<div class="info"> Остаток: 18 500 ₽</div>
+
+<hr style="margin:25px 0;">
+
+<div class="info"> Автокредит №784521</div>
+<div class="info"> Статус: Активен</div>
+<div class="info"> Сумма: 120 000 ₽</div>
+<div class="info"> Остаток: 67 000 ₽</div>
+
+<hr style="margin:25px 0;">
+
+<h2 style="color:#2563eb;margin-bottom:20px;">
+Закрытые кредиты
+</h2>
+
+<div class="info"> Кредитная карта</div>
+<div class="info">Статус: Закрыт</div>
+<div class="info">Дата закрытия: 14.03.2024</div>
+
+<hr style="margin:25px 0;">
+
+<div class="info"> Потребительский кредит</div>
+<div class="info">Статус: Закрыт</div>
+<div class="info">Дата закрытия: 07.09.2023</div>
+
+<hr style="margin:25px 0;">
+
+<div class="info"> Общий рейтинг: 812</div>
+<div class="info"> Вероятность одобрения: 92%</div>
+<div class="info"> Финансовая надёжность: Высокая</div>
+
+<a href="/profile" class="back">
+← Вернуться в кабинет
+</a>
+
+</div>
+
+<div class="bank-card">
+
+<h2> Рекомендации банков</h2>
+
+<div class="bank">
+<div class="bank-name">Альфа-Банк</div>
+<div>Предварительно одобрен лимит</div>
+<div class="limit">300 000 ₽</div>
+</div>
+
+<div class="bank">
+<div class="bank-name">Сбербанк</div>
+<div>Предварительно одобрен лимит</div>
+<div class="limit">250 000 ₽</div>
+</div>
+
+<div class="bank">
+<div class="bank-name">Т-Банк</div>
+<div>Предварительно одобрен лимит</div>
+<div class="limit">200 000 ₽</div>
+</div>
+
+</div>
+
+</div>
+
+</body>
