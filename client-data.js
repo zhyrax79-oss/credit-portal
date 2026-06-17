@@ -1,5 +1,5 @@
 const client = {
-    fio: "Сергей Сергеевич",
+    fio: "сЕРГЕЙ",
     rating: "812",
     activeCredits: "2",
     limit: "1 050 000 ₽",
